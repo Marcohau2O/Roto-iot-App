@@ -1,16 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Navbar from './navbar';
 import {styles} from './assets/styles'
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function App() {
   const [currentView, setCurrentView] = useState(1);
+  const [dogImageUrl, setDogImageUrl] = useState(null);
+
+    const fetchDogImage = async () => {
+      try {
+        const response = await fetch('https://api.thedogapi.com/v1/images/search?limit=10');
+        const data = await response.json();
+        if (data && data.length > 0) {
+          const imageUrl = data[0].url;
+          setDogImageUrl(imageUrl);
+        }
+      } catch (error) {
+        console.error('Error fetching dog image:', error);
+      }
+    };
 
   const switchToView1 = () => {
-    setCurrentView(1);
+    setCurrentView(1)
+    fetchDogImage();
   };
 
   const switchToView2 = () => {
@@ -24,19 +41,25 @@ export default function App() {
         {currentView === 1 ? (
           <View style={styles.innerContainer}>
       <View style={styles.rectangle}>
-        <Ionicons name="eye" size={24} color="black" style={styles.icon} />
-        <Text style={styles.rectangleText3}>Org</Text>
-        <Text style={styles.subtitle}>Cantidad de Alimento Total</Text>
+      <FontAwesome name="heartbeat" size={24} color="black" style={styles.icon} />
+        <Text style={styles.rectangleText3}>Cantidad de Alimento Total</Text>
+        <Text style={styles.subtitle}>Alimento: 2000 kg</Text>
       </View>
       <View style={styles.rectangle}>
         <Ionicons name="eye" size={24} color="black" style={styles.icon} />
-        <Text style={styles.rectangleText3}>Org</Text>
-        <Text style={styles.subtitle}>Cantidad de Alimento Consumido</Text>
+        <Text style={styles.rectangleText3}>Cantidad de Alimento Consumido</Text>
+        <Text style={styles.subtitle}>Alimento: 350 grs</Text>
       </View>
-      <View style={styles.rectangle}>
-        <Ionicons name="eye" size={24} color="black" style={styles.icon} />
-        <Text style={styles.rectangleText}>Foto de un animalito</Text>
-        <Text style={styles.subtitle}>Aqui mapearemos el api de animales</Text>
+      <View style={styles.rectangle3}>
+      <MaterialCommunityIcons name="dog" size={24} color="black" style={styles.icon} />
+        <Text style={styles.rectangleText4}>Tu Perro es:</Text>
+        {dogImageUrl && (
+                <Image
+                source={{ uri: dogImageUrl }}
+                style={styles.image2}
+              />
+              )}
+        <Text style={styles.subtitle}>dog</Text>
       </View>
           </View>
         ) : (
@@ -45,30 +68,9 @@ export default function App() {
       <Text style={styles.title}>Sobre Nosotros</Text>
       <Image
   source={require('./assets/chucho.jpg')}
-  style={{
-    width: 200,
-    height: 200,
-    marginLeft: 80,
-    borderRadius: 20,
-    borderWidth: 2, // Agregamos un borde
-    borderColor: 'lightgray', // Color del borde
-    shadowColor: '#000', // Agregamos sombra
-    margin:20,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  }}
-/>
-      <Text style={styles.paragraph}>
-      Somo estudiantes en desarrollo de software apasionados por la creación de innovaciones
-      </Text>
-      <Text style={styles.paragraph}>
-      </Text>
-      <Text style={styles.paragraph}>
+  style={styles.imageNosotros}/>
+      <Text>
+      Somos estudiantes en desarrollo de software apasionados por la creación de innovaciones
       </Text>
     </View>
           </View>

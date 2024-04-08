@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   rectangle: {
     margin: 10,
     width: 370,
-    height: 135,
+    height: 155,
     backgroundColor: 'white',
     marginVertical: 8,
     alignItems: 'center',
@@ -43,8 +43,14 @@ export const styles = StyleSheet.create({
   },
 
   rectangleText3: {
-    marginRight:290,
-    fontSize: 18,
+    marginRight:200,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  rectangleText4: {
+    marginRight:250,
+    fontSize: 15,
     fontWeight: 'bold',
     color: '#333',
   },
@@ -76,12 +82,19 @@ export const styles = StyleSheet.create({
   rectangle3: {
     margin: 10,
     width: 370,
-    height: 130,
-    backgroundColor: 'lightblue',
-    marginVertical: 10,
+    height: 240,
+    backgroundColor: 'white',
+    marginVertical: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   //botones
   buttonContainer: {
@@ -142,5 +155,40 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 20, 
   },
+
+  image2: {
+    width: 140,
+    height: 140,
+    marginLeft: -100,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: 'lightgray',
+    shadowColor: '#000',
+    margin: 0,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+
+  imageNosotros: {
+    width: 200,
+    height: 200,
+    marginLeft: 80,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: 'lightgray',
+    shadowColor: '#000',
+    margin:20,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  }
   
 });
