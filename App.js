@@ -52,14 +52,15 @@ export default function App() {
       </View>
       <View style={styles.rectangle3}>
       <MaterialCommunityIcons name="dog" size={24} color="black" style={styles.icon} />
-        <Text style={styles.rectangleText4}>Tu Perro es:</Text>
+        <Text style={styles.rectangleText4}>Raza de perros
+        :</Text>
         {dogImageUrl && (
                 <Image
                 source={{ uri: dogImageUrl }}
                 style={styles.image2}
               />
               )}
-        <Text style={styles.subtitle}>dog</Text>
+        <Text style={styles.subtitle}></Text>
       </View>
           </View>
         ) : (
